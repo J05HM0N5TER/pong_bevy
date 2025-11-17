@@ -8,6 +8,10 @@ license = "MIT"
 bevy = "0.17.2"
 avian2d = "0.4"
 
+[dev-dependencies]
+# Speed up builds in dev
+bevy = { version = "0.17.2", features = ["dynamic_linking"] }
+
 # Enable a small amount of optimization in the dev profile.
 [profile.dev]
 opt-level = 1
