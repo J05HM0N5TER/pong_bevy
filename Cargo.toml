@@ -5,12 +5,19 @@ edition = "2024"
 license = "MIT"
 
 [dependencies]
-bevy = "0.17.2"
 avian2d = "0.4"
+bevy = "0.17.2"
 
 [dev-dependencies]
 # Speed up builds in dev
 bevy = { version = "0.17.2", features = ["dynamic_linking"] }
+
+[lints.clippy]
+# bevy doesn't work with this
+needless_pass_by_value = "allow"
+nursery = { level = "deny", priority = -1 }
+pedantic = { level = "deny", priority = -1 }
+unwrap_used = "deny"
 
 # Enable a small amount of optimization in the dev profile.
 [profile.dev]
@@ -19,10 +26,3 @@ opt-level = 1
 # Enable a large amount of optimization in the dev profile for dependencies.
 [profile.dev.package."*"]
 opt-level = 3
-
-[lints.clippy]
-pedantic =  { level = "deny",priority = -1 }
-nursery = { level = "deny", priority = -1 }
-# bevy doesn't work with this
-needless_pass_by_value = "allow"
-unwrap_used = "deny"
